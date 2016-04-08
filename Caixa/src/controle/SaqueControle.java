@@ -37,18 +37,26 @@ public class SaqueControle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pConta, pValor, data;
+		String pConta = request.getParameter("conta");
+		String pValor = request.getParameter("valor");
+		String data;
 		Calendar cldr = Calendar.getInstance();
 		data = cldr.get(Calendar.DAY_OF_MONTH) + "/" + (cldr.get(Calendar.MONTH) + 1) + "/" + cldr.get(Calendar.YEAR);
 		String acao = request.getParameter("acao");
 		PrintWriter out = response.getWriter();
 
 		if (acao.equals("Sacar")) {
-			pConta = request.getParameter("conta");
-			pValor = request.getParameter("valor");
 
-			int conta = Integer.parseInt(pConta);
-			double valor = Double.parseDouble(pValor);
+			int conta;
+			double valor;
+			try {
+				conta = Integer.parseInt(pConta);
+				valor = Double.parseDouble(pValor);
+			} catch (NumberFormatException e) {
+				conta = -1;
+				valor = 0.0;
+				e.printStackTrace();
+			}
 
 			Conta co = new Conta(conta, 0, 0, null);
 			co.carregar();

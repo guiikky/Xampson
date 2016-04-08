@@ -106,16 +106,10 @@ public class Extrato {
 		
 	}
 
-	public static String[][] carregar(int id) {
+	public static ArrayList<ExtratoTO> carregar(int id) {
 		ExtratoDAO dao = new ExtratoDAO();
 		ArrayList<ExtratoTO> array = dao.carregarTudo(id);
-		String mat[][] = new String[array.size()][3];
-		for (int i = 0; i < mat.length; i++) {
-			mat[i][0] = array.get(i).getData();
-			mat[i][1] = array.get(i).getOperacao();
-			mat[i][2] = array.get(i).getValor() + "";
-		}
-		return mat;
+		return array;
 	}
 
 	public static void imprimir(String mat[][]) {
