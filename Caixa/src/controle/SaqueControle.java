@@ -1,9 +1,9 @@
 package controle;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Calendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import negocio.Conta;
 import negocio.Dispenser;
 import negocio.Saque;
+import to.SaqueTO;
 
 /**
  * Servlet implementation class SaqueControle
@@ -43,7 +44,6 @@ public class SaqueControle extends HttpServlet {
 		Calendar cldr = Calendar.getInstance();
 		data = cldr.get(Calendar.DAY_OF_MONTH) + "/" + (cldr.get(Calendar.MONTH) + 1) + "/" + cldr.get(Calendar.YEAR);
 		String acao = request.getParameter("acao");
-		PrintWriter out = response.getWriter();
 
 		if (acao.equals("Sacar")) {
 
@@ -63,13 +63,15 @@ public class SaqueControle extends HttpServlet {
 			Saque saque = new Saque(data, co, new Dispenser(), valor);
 			System.out.println(saque.sacar());
 			
-			out.println("<html><head><title>Saque</title></head><body><h3>Saque</h3>");
-			out.println("data: " + saque.getData()+ "<br>");
-			out.println("valor: " + saque.getValor()+ "<br>");
-			out.println("conta: " + co.getConta() + "<br>");
-			out.println("agencia: " + co.getAgencia() + "<br>");
-			out.println("saldo: " + co.getSaldo() + "<br>");
-			out.println("</body></html>");
+			SaqueTO to = new SaqueTO();
+			to.setData(data);
+			to.setConta(co);
+			to.setDispenser(new Dispenser());
+			to.setValor(valor);
+			
+			request.setAttribute("saque", to);
+			RequestDispatcher view = request.getRequestDispatcher("Saque.jsp");
+			view.forward(request, response);
 		}
 	}
 

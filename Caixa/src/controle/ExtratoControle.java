@@ -1,9 +1,9 @@
 package controle;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +38,6 @@ public class ExtratoControle extends HttpServlet {
 
 		String pConta = request.getParameter("conta");
 		String acao = request.getParameter("acao");
-		PrintWriter out = response.getWriter();
 
 		if (acao.equals("Consultar")) {
 
@@ -50,15 +49,11 @@ public class ExtratoControle extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			ArrayList<ExtratoTO> extrato = Extrato.carregar(conta);
+			ArrayList<ExtratoTO> to = Extrato.carregar(conta);		
 			
-			out.println("<html><head><title>Extrato</title></head><body><h3>Extrato</h3>");
-			for (ExtratoTO i : extrato) {
-				out.println("data: " + i.getData() + "<br>");
-				out.println("operacao: " + i.getOperacao() + "<br>");
-				out.println("valor: " + i.getValor() + "<br><br>");
-				out.println("</body></html>");
-			}
+			request.setAttribute("extrato", to);
+			RequestDispatcher view = request.getRequestDispatcher("Extrato.jsp");
+			view.forward(request, response);
 		}
 	}
 
