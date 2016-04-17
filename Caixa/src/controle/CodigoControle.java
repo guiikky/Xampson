@@ -1,7 +1,6 @@
 package controle;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,15 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import negocio.Conta;
-import negocio.Extrato;
-import to.ExtratoTO;
+import util.Dados;
 
 /**
- * Servlet implementation class ManterExtrato
+ * Servlet implementation class CodigoControle
  */
-@WebServlet("/ExtratoControle")
-public class ExtratoControle extends HttpServlet {
+@WebServlet("/CodigoControle")
+public class CodigoControle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,24 +33,26 @@ public class ExtratoControle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-//		String pDias = request.getParameter("conta");
+		String codigo = request.getParameter("codigo");
 		String acao = request.getParameter("acao");
+		int code = -1;
 
-		Conta conta = Conta.getInstance();
-		conta.carregar();
+		RequestDispatcher view = null;
 
-		if (acao.equals("7")) {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
-		} else if (acao.equals("15")) {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
+		if (acao.equals("Continuar1")) {
+			Dados.gerarCodigo(codigo);
+			view = request.getRequestDispatcher("AcessarCodigo.jsp");
 		} else {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
+			code = Dados.acessarCodigo(codigo);
+			if (code == 0) {
+				view = request.getRequestDispatcher("Menu.jsp");
+			} else if (code == 1) {
+				view = request.getRequestDispatcher("AcessarCodigo.jsp");
+			} else if (code == 2) {
+				view = request.getRequestDispatcher("Login.jsp");
+			}
 		}
-		RequestDispatcher view = request.getRequestDispatcher("Extrat.jsp");
+
 		view.forward(request, response);
 	}
 

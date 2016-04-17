@@ -1,5 +1,7 @@
 package negocio;
 
+import to.SaqueTO;
+
 public class Saque {
 	private String data;
 	private Conta conta;
@@ -44,8 +46,17 @@ public class Saque {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
+	public SaqueTO getTO(){
+		SaqueTO to = new SaqueTO();
+		to.setData(data);
+		to.setConta(conta);
+		to.setDispenser(dispenser);
+		to.setValor(valor);
+		return to;
+	}
 
-	public String sacar() {
+	public int sacar() {
 		if (conta.conferirSaldo(valor)) {
 			if ((int) valor % 10 == 0) {
 				if (dispenser.contar((int) valor)) {
@@ -53,15 +64,15 @@ public class Saque {
 					ex.incluir();
 					conta.setSaldo(conta.getSaldo() - valor);
 					conta.atualizar();
-					return "Nao emitimos comprovante";
+					return 0;
 				} else {
-					return "Notas indiponiveis";
+					return 1;
 				}
 			} else {
-				return "Valor invalido";
+				return 2;
 			}
 		} else {
-			return "Saldo invalido";
+			return 3;
 		}
 
 	}

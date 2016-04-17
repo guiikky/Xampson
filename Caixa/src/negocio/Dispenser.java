@@ -113,7 +113,7 @@ public class Dispenser {
 		}
 	}
 
-	private static String n(String x) {
+	private String n(String x) {
 		String resp = "";
 		int y = 6 - x.length();
 		for (int i = 0; i < y; i++) {

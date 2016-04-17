@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Extrato</title>
+    <title>Saque</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -21,23 +21,32 @@
     <div id="main" class="container">
 		<h3 class="page-header"><%=Conta.getInstance().getCliente().getNome() %></h3>
 		<!-- Formulario para logar -->
-		<form action="ExtratoControle" method="post">
+		<form action="SaqueControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h3>Extrato</h3>
+					<h3>Saque</h3>
 				</div>
 				<!-- area de campos do form -->
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="dias">Dias</label>
-						<input type="number" class="form-control" name="dias" id="dias" maxlength="8" placeholder="300">
+						<label for="valor">Valor</label>
+						<input type="number" class="form-control" name="valor" id="valor" maxlength="8" placeholder="300">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn btn-default" name="acao" value="7">7 Dias</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="*">Tudo</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="15">15 Dias</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="10">R$10</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="20">R$20</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="50">R$50</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="100">R$100</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="200">R$200</button>
+						<button type="submit" class="btn btn btn-default" name="acao" value="500">R$500</button><br>
+					</div>
+				</div>
+				<hr></hr>
+				<div id="actions" class="row">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn btn-primary" name="acao" value="sacar">Sacar</button>
 					</div>
 				</div>
 			</div>

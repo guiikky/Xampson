@@ -9,35 +9,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Extrato</title>
+    <title>Saldo</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <c:import url="Barra.jsp" />
+	<c:import url="Barra.jsp" />
     <!-- Container Principal -->
     <div id="main" class="container">
 		<h3 class="page-header"><%=Conta.getInstance().getCliente().getNome() %></h3>
 		<!-- Formulario para logar -->
-		<form action="ExtratoControle" method="post">
+		<form action="SaqueControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h3>Extrato</h3>
+					<h3>Saldo</h3>
 				</div>
 				<!-- area de campos do form -->
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="dias">Dias</label>
-						<input type="number" class="form-control" name="dias" id="dias" maxlength="8" placeholder="300">
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn btn-default" name="acao" value="7">7 Dias</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="*">Tudo</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="15">15 Dias</button>
+						<label for="valor">Valor: <%=Conta.getInstance().getSaldo() %></label>
 					</div>
 				</div>
 			</div>

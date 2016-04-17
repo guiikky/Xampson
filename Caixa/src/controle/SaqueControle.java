@@ -18,7 +18,7 @@ import to.SaqueTO;
 /**
  * Servlet implementation class SaqueControle
  */
-@WebServlet("/SaqueForm")
+@WebServlet("/SaqueControle")
 public class SaqueControle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,41 +38,57 @@ public class SaqueControle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pConta = request.getParameter("conta");
 		String pValor = request.getParameter("valor");
+		String acao = request.getParameter("acao");
 		String data;
 		Calendar cldr = Calendar.getInstance();
 		data = cldr.get(Calendar.DAY_OF_MONTH) + "/" + (cldr.get(Calendar.MONTH) + 1) + "/" + cldr.get(Calendar.YEAR);
-		String acao = request.getParameter("acao");
+		int code = -1;
 
-		if (acao.equals("Sacar")) {
+		Conta conta = Conta.getInstance();
+		conta.carregar();
+		SaqueTO to = new SaqueTO();
+		RequestDispatcher view = null;
 
-			int conta;
+		if (acao.equals("sacar")) {
 			double valor;
 			try {
-				conta = Integer.parseInt(pConta);
 				valor = Double.parseDouble(pValor);
 			} catch (NumberFormatException e) {
-				conta = -1;
-				valor = 0.0;
+				valor = -1;
 				e.printStackTrace();
 			}
-
-			Conta co = new Conta(conta, 0, 0, null);
-			co.carregar();
-			Saque saque = new Saque(data, co, new Dispenser(), valor);
-			System.out.println(saque.sacar());
-			
-			SaqueTO to = new SaqueTO();
-			to.setData(data);
-			to.setConta(co);
-			to.setDispenser(new Dispenser());
-			to.setValor(valor);
-			
-			request.setAttribute("saque", to);
-			RequestDispatcher view = request.getRequestDispatcher("Saque.jsp");
-			view.forward(request, response);
+			Saque saque = new Saque(data, conta, new Dispenser(), valor);
+			code = saque.sacar();
+			to = saque.getTO();
+			if (code == 0) {
+				view = request.getRequestDispatcher("Saque.jsp");
+			} else if (code == 1) {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			} else if (code == 2) {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			} else {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			}
+		} else {
+			acao = request.getParameter("acao");
+			double valor = Double.parseDouble(acao);
+			Saque saque = new Saque(data, conta, new Dispenser(), valor);
+			code = saque.sacar();
+			to = saque.getTO();
+			if (code == 0) {
+				view = request.getRequestDispatcher("Saque.jsp");
+			} else if (code == 1) {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			} else if (code == 2) {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			} else {
+				view = request.getRequestDispatcher("Sacar.jsp");
+			}
 		}
+
+		request.setAttribute("saque", to);
+		view.forward(request, response);
 	}
 
 }
