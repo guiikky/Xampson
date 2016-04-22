@@ -46,7 +46,7 @@ public class SaqueControle extends HttpServlet {
 		int code = -1;
 
 		Conta conta = Conta.getInstance();
-		conta.carregar();
+//		conta.carregar();
 		SaqueTO to = new SaqueTO();
 		RequestDispatcher view = null;
 

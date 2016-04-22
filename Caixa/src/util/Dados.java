@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Formatter;
+import java.util.Random;
 
 import criptografia.AES;
 
@@ -49,6 +50,25 @@ public class Dados {
 			}
 		}
 		return false;
+	}
+	
+	public static int[] random() {
+		Random gnt = new Random();
+		int vet[] = new int[10];
+		for (int i = 0; i < vet.length; i++) {
+			vet[i] = -1;
+		}
+		for (int i = 0; i < vet.length; i++) {
+			int aux = gnt.nextInt(10);
+			for (int j = 0; j < vet.length; j++) {
+				if (aux == vet[j]) {
+					aux = gnt.nextInt(10);
+					j = -1;
+				}
+			}
+			vet[i] = aux;
+		}
+		return vet;
 	}
 
 	public static String[] acesso() {

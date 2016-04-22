@@ -57,7 +57,7 @@ public class DebitoControle extends HttpServlet {
 			e.printStackTrace();
 		}
 		Conta conta = Conta.getInstance();
-		conta.carregar();
+//		conta.carregar();
 		
 		DebitoAutomatico debito = new DebitoAutomatico(operadora, consumidor, data, valor, conta);
 		debito.criar();

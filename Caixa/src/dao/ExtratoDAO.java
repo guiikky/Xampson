@@ -90,7 +90,7 @@ public class ExtratoDAO {
 	}
 
 	public ArrayList<ExtratoTO> carregarTudo(int id) {
-		ArrayList<ExtratoTO> array = new ArrayList<ExtratoTO>();
+		ArrayList<ExtratoTO> lista = new ArrayList<ExtratoTO>();
 		String sqlSelect = "SELECT valor, data, operacao FROM log WHERE conta = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -102,7 +102,7 @@ public class ExtratoDAO {
 					to.setData(rs.getString("data"));
 					to.setOperacao(rs.getString("operacao"));
 					to.setValor(rs.getDouble("valor"));
-					array.add(to);
+					lista.add(to);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -110,6 +110,6 @@ public class ExtratoDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return array;
+		return lista;
 	}
 }

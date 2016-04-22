@@ -62,9 +62,4 @@ public class ContaTest {
 		assertEquals("testa saldo", conta.conferirSaldo(0), false);
 	}
 
-	@Test
-	public void instance() {
-		Conta aux = Conta.getInstance(conta.getConta(), conta.getAgencia());
-		assertEquals("testa instance", aux instanceof Conta, true);
-	}
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import util.Acesso;
+import util.Dados;
 
 /**
  * Servlet implementation class AcessoControle
@@ -50,7 +51,9 @@ public class AcessoControle extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-
+		int vet[] = Dados.random();
+		request.setAttribute("vet", vet);
+		
 		Acesso acesso = new Acesso(conta, agencia, senha);
 		code = acesso.validar();
 		RequestDispatcher view = null;

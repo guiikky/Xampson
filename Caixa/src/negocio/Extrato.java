@@ -108,17 +108,8 @@ public class Extrato {
 
 	public static ArrayList<ExtratoTO> carregar(int id) {
 		ExtratoDAO dao = new ExtratoDAO();
-		ArrayList<ExtratoTO> array = dao.carregarTudo(id);
-		return array;
-	}
-
-	public static void imprimir(String mat[][]) {
-		for (int i = 0; i < mat.length; i++) {
-			for (int j = 0; j < mat[0].length; j++) {
-				System.out.println(mat[i][j]);
-			}
-			System.out.println();
-		}
+		ArrayList<ExtratoTO> lista = dao.carregarTudo(id);
+		return lista;
 	}
 
 	@Override

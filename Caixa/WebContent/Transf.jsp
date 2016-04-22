@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://WebContent/WEB-INF/Conta.tld" prefix="conta"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="negocio.Conta"%>
 <%@ page import="to.TransferenciaTO"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,33 +20,32 @@
 	<c:import url="Barra.jsp" />
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header"><%=Conta.getInstance().getCliente().getNome() %></h3>
+		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
 		<form action="TransfControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Transferencia</h3>
 				</div>
-				<% TransferenciaTO to = (TransferenciaTO)request.getAttribute("transf"); %>
 				<!-- area de campos do form -->
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="nome">Nome: <%=to.getCos().getCliente().getNome()%></label>
+						<label for="nome">Nome: ${transf.cos.cliente.nome}</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="conta">Conta: <%=to.getCos().getConta()%></label>
+						<label for="conta">Conta: ${transf.cos.conta}</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="agencia">Agencia: <%=to.getCos().getAgencia()%></label>
+						<label for="agencia">Agencia: ${transf.cos.agencia}</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="valor">Valor: <%=to.getValor() %></label>
+						<label for="valor">Valor: ${transf.valor}</label>
 					</div>
 				</div>
 				<hr></hr>

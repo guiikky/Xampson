@@ -49,11 +49,12 @@ public class Conta {
 		this.cliente = cliente;
 	}
 
-	public static Conta getInstance(int conta, int agencia) {
+	public static void newConta(int conta, int agencia) {
 		if (instance == null) {
-			instance = new Conta(conta, agencia, 0, null);
+			Conta aux = new Conta(conta, agencia, 0, null);
+			aux.carregar();
+			instance = aux;
 		}
-		return instance;
 	}
 
 	public static Conta getInstance() {
@@ -68,24 +69,25 @@ public class Conta {
 		return saldo >= valor && valor > 0;
 	}
 
-	public void criar() {
-		ContaDAO dao = new ContaDAO();
+	public ContaTO getTO() {
 		ContaTO to = new ContaTO();
 		to.setConta(conta);
 		to.setAgencia(agencia);
 		to.setSaldo(saldo);
 		to.setCliente(cliente);
+		return to;
+	}
+
+	public void criar() {
+		ContaDAO dao = new ContaDAO();
+		ContaTO to = getTO();
 		dao.incluir(to);
 		cliente.setId(to.getCliente().getId());
 	}
 
 	public void atualizar() {
 		ContaDAO dao = new ContaDAO();
-		ContaTO to = new ContaTO();
-		to.setConta(conta);
-		to.setAgencia(agencia);
-		to.setSaldo(saldo);
-		to.setCliente(cliente);
+		ContaTO to = getTO();
 		dao.atualizar(to);
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="negocio.Conta"%>
+<%@ taglib uri="http://WebContent/WEB-INF/Conta.tld" prefix="conta"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +26,7 @@
 	</nav>
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header"><%=Conta.getInstance().getCliente().getNome() %></h3>
+		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
 			<form action="CodigoControle" method="post">
 			<!-- area de campos do form -->

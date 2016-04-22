@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="negocio.Conta"%>
-<%@ page import="java.util.Random"%>
+<%@ taglib uri="http://WebContent/WEB-INF/Conta.tld" prefix="conta"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,7 +26,7 @@
 	</nav>
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header"><%=Conta.getInstance().getCliente().getNome()%></h3>
+		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
 		<form action="CodigoControle" method="post">
 			<!-- area de campos do form -->
@@ -34,22 +34,6 @@
 				<div class="page-header">
 					<h3>Codigo de Acesso</h3>
 				</div>
-					<%		Random gnt = new Random();
-							int vet[] = new int[10];
-							for (int i = 0; i < vet.length; i++) {
-								vet[i] = -1;
-							}
-							for (int i = 0; i < vet.length; i++) {
-								int aux = gnt.nextInt(10);
-								for (int j = 0; j < vet.length; j++) {
-									if (aux == vet[j]) {
-										aux = gnt.nextInt(10);
-										j = -1;
-									}
-								}
-								vet[i] = aux;
-							}
-					%>
 				<div class="row">
 					<div class="form-group col-md-12">
 							<input type="number" class="form-control" name="codigo" id="codigo" required maxlength="3" placeholder="123"><br>
@@ -57,23 +41,23 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<button type="button" class="btn btn-lg btn-default"><%=vet[0] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[1] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[2] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[3] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[4] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[5] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[6] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[7] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[8] %></button>
-						<button type="button" class="btn btn-lg btn-default"><%=vet[9] %></button>
+						<button type="button" class="btn btn btn-default">${vet[0]}</button>
+						<button type="button" class="btn btn btn-default">${vet[1]}</button>
+						<button type="button" class="btn btn btn-default">${vet[2]}</button>
+						<button type="button" class="btn btn btn-default">${vet[3]}</button>
+						<button type="button" class="btn btn btn-default">${vet[4]}</button>
+						<button type="button" class="btn btn btn-default">${vet[5]}</button>
+						<button type="button" class="btn btn btn-default">${vet[6]}</button>
+						<button type="button" class="btn btn btn-default">${vet[7]}</button>
+						<button type="button" class="btn btn btn-default">${vet[8]}</button>
+						<button type="button" class="btn btn btn-default">${vet[9]}</button>
 					</div>
 				</div>
 				<hr></hr>
 				<div id="actions" class="row">
 					<div class="col-md-12">
 						<button type="submit" class="btn btn-primary" name="acao" value="Continuar2">Continuar</button>
-						<button type="submit" class="btn btn-default" name="acao" value="Corrigir">Corrigir</button>
+						<button type="button" class="btn btn-default" name="acao" value="Corrigir">Corrigir</button>
 					</div>
 				</div>
 			</div>

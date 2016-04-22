@@ -41,18 +41,20 @@ public class ExtratoControle extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		Conta conta = Conta.getInstance();
-		conta.carregar();
+//		conta.carregar();
+		ArrayList<ExtratoTO> lista;
 
 		if (acao.equals("7")) {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
+			lista = Extrato.carregar(conta.getConta());
+			request.setAttribute("lista", lista);
 		} else if (acao.equals("15")) {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
+			lista =  Extrato.carregar(conta.getConta());
+			request.setAttribute("lista", lista);
 		} else {
-			ArrayList<ExtratoTO> to = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", to);
+			lista =  Extrato.carregar(conta.getConta());
+			
 		}
+		request.setAttribute("lista", lista);
 		RequestDispatcher view = request.getRequestDispatcher("Extrat.jsp");
 		view.forward(request, response);
 	}

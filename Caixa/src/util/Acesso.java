@@ -47,9 +47,8 @@ public class Acesso {
 		if (posicao > -1) {
 			if (!status[posicao]) {
 				new Dados(normal, posicao, 0);
-				Conta.getInstance(conta, agencia);
-				Conta.getInstance().carregar();
-				
+				Conta.newConta(conta, agencia);
+
 				// Senha nao cadastrada
 				if (normal[posicao].substring(18, 21).equals("-1 ")) {
 					return 0;
@@ -58,11 +57,11 @@ public class Acesso {
 				else {
 					return 1;
 				}
-			//Conta bloqueada
+				// Conta bloqueada
 			} else {
 				return 2;
 			}
-		//Conta invalida
+			// Conta invalida
 		} else {
 			return 3;
 		}
@@ -97,4 +96,5 @@ public class Acesso {
 		}
 		return resp;
 	}
+
 }

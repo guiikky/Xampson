@@ -65,7 +65,6 @@ public class TransfControle extends HttpServlet {
 			if (Dados.verificar(pConta, pAgencia)) {
 				Conta contap = Conta.getInstance();
 				Conta contas = new Conta(conta, agencia, 0, null);
-				contap.carregar();
 				contas.carregar();
 
 				Transferencia transf = new Transferencia(contap, contas, data, valor);
@@ -75,15 +74,14 @@ public class TransfControle extends HttpServlet {
 		} else if (acao.equals("confirmar")) {
 			Conta contap = Conta.getInstance();
 			Conta contas = new Conta(conta, agencia, 0, null);
-			contap.carregar();
 			contas.carregar();
 
 			Transferencia transf = new Transferencia(contap, contas, data, valor);
 			transf.transferir();
 
 			view = request.getRequestDispatcher("Menu.jsp");
-		} else {
-			view = request.getRequestDispatcher("Menu.jsp");
+		} else if (acao.equals("cancelar")) {
+			view = request.getRequestDispatcher("Transferencia.jsp");
 		}
 		view.forward(request, response);
 	}
