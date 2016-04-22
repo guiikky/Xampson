@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://WebContent/WEB-INF/Conta.tld" prefix="conta"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="to.TransferenciaTO"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
