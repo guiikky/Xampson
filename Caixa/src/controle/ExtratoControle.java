@@ -41,7 +41,6 @@ public class ExtratoControle extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		Conta conta = Conta.getInstance();
-//		conta.carregar();
 		ArrayList<ExtratoTO> lista;
 
 		if (acao.equals("7")) {
