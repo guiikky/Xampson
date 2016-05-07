@@ -12,11 +12,16 @@ public class Dados {
 	private static String dados[];
 	private static int posicao;
 	private static int cont;
+	private static String path;
 
-	public Dados(String vet[], int pos, int i) {
-		dados = vet;
-		posicao = pos;
-		cont = i;
+	public Dados(String dados[], int posicao, int cont) {
+		Dados.dados = dados;
+		Dados.posicao = posicao;
+		Dados.cont = cont;
+	}
+
+	public Dados(String path) {
+		Dados.path = path;
 	}
 
 	public static String[] getDados() {
@@ -43,6 +48,14 @@ public class Dados {
 		Dados.cont = cont;
 	}
 
+	public static String getPath() {
+		return path;
+	}
+
+	public static void setPath(String path) {
+		Dados.path = path;
+	}
+
 	public static boolean verificar(String co, String ag) {
 		for (int i = 0; i < dados.length; i++) {
 			if (dados[i].substring(0, 7).equals(co) && dados[i].substring(13, 17).equals(ag)) {
@@ -51,7 +64,7 @@ public class Dados {
 		}
 		return false;
 	}
-	
+
 	public static int[] random() {
 		Random gnt = new Random();
 		int vet[] = new int[10];
@@ -73,21 +86,20 @@ public class Dados {
 
 	public static String[] acesso() {
 		String result = "";
-		File arquivo = new File("C:\\users\\ikky\\my documents\\github\\caixa\\src\\criptografia\\arqCrip.txt");
+		File arquivo = new File(path + "\\criptografia\\arqCrip.txt");
 		try (FileReader fr = new FileReader(arquivo); BufferedReader br = new BufferedReader(fr);) {
 			while (br.ready()) {
 				result += br.readLine() + "\n";
 			}
-		} catch (Exception erro) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return AES.decrip(result.split("\n"));
 	}
 
 	public static void gerarCodigo(String x) {
-		try (Formatter saida = new Formatter(
-				"C:\\users\\ikky\\my documents\\github\\caixa\\src\\criptografia\\arqCrip.txt");
-				Formatter saida2 = new Formatter(
-						"C:\\users\\ikky\\my documents\\github\\caixa\\src\\criptografia\\arq.txt");) {
+		try (Formatter saida = new Formatter(path + "\\criptografia\\arqCrip.txt");
+				Formatter saida2 = new Formatter(path + "\\criptografia\\arq.txt");) {
 
 			String aux = dados[posicao];
 			dados[posicao] = aux.substring(0, 17) + "/" + x + "/" + aux.substring(22);
@@ -101,6 +113,7 @@ public class Dados {
 				saida2.format(dados[i] + quebraDeLinha);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -109,7 +122,6 @@ public class Dados {
 		if (dados[posicao].substring(18, 21).equals(x)) {
 			return 0;
 		}
-
 		// Erro 1 ou 2 vezes o cod de acesso
 		else if (cont < 2) {
 			cont++;
@@ -117,10 +129,8 @@ public class Dados {
 		}
 		// Erro 3 vezes cod de acesso, conta bloqueada (Requisito)
 		else {
-			try (Formatter saida = new Formatter(
-					"C:\\users\\ikky\\my documents\\github\\caixa\\src\\criptografia\\arqCrip.txt");
-					Formatter saida2 = new Formatter(
-							"C:\\users\\ikky\\my documents\\github\\caixa\\src\\criptografia\\arq.txt");) {
+			try (Formatter saida = new Formatter(path + "\\criptografia\\arqCrip.txt");
+					Formatter saida2 = new Formatter(path + "\\criptografia\\arq.txt");) {
 
 				String aux = dados[posicao];
 				dados[posicao] = aux.substring(0, 21) + "/" + true;

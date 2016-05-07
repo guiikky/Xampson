@@ -4,10 +4,10 @@ import java.util.ResourceBundle;
 
 public class Idioma {
 
-	private static ResourceBundle rb = null;
+	private static ResourceBundle rb;
 
-	public Idioma(ResourceBundle x) {
-		rb = x;
+	public Idioma(ResourceBundle rb) {
+		Idioma.rb = rb;
 	}
 
 	public static ResourceBundle getRb() {

@@ -84,7 +84,7 @@ public class ExtratoDAO {
 				e.printStackTrace();
 			}
 		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
+			e1.getStackTrace();
 		}
 		return to;
 	}
@@ -108,7 +108,7 @@ public class ExtratoDAO {
 				e.printStackTrace();
 			}
 		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
+			e1.getStackTrace();
 		}
 		return lista;
 	}

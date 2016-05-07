@@ -70,6 +70,8 @@ public class TransfControle extends HttpServlet {
 				Transferencia transf = new Transferencia(contap, contas, data, valor);
 				request.setAttribute("transf", transf.getTO());
 				view = request.getRequestDispatcher("Transf.jsp");
+			} else {
+				view = request.getRequestDispatcher("Transferencia.jsp");
 			}
 		} else if (acao.equals("confirmar")) {
 			Conta contap = Conta.getInstance();

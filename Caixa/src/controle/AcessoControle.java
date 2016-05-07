@@ -3,12 +3,14 @@ package controle;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocio.Conta;
 import util.Acesso;
 import util.Dados;
 
@@ -37,34 +39,47 @@ public class AcessoControle extends HttpServlet {
 		String pConta = request.getParameter("conta");
 		String pAgencia = request.getParameter("agencia");
 		String pSenha = request.getParameter("senha");
-
-		int conta;
-		int agencia;
-		int senha;
-		int code = -1;
-		try {
-			conta = Integer.parseInt(pConta);
-			agencia = Integer.parseInt(pAgencia);
-			senha = Integer.parseInt(pSenha);
-		} catch (NumberFormatException e) {
-			conta = agencia = senha = -1;
-			e.printStackTrace();
-		}
+		String acao = request.getParameter("acao");
 		
-		int vet[] = Dados.random();
-		request.setAttribute("vet", vet);
-		
-		Acesso acesso = new Acesso(conta, agencia, senha);
-		code = acesso.validar();
 		RequestDispatcher view = null;
 
-		if (code == 0) {
-			view = request.getRequestDispatcher("GerarCodigo.jsp");
-		} else if (code == 1) {
-			view = request.getRequestDispatcher("AcessarCodigo.jsp");
-		} else if (code == 2) {
-			view = request.getRequestDispatcher("Login.jsp");
-		} else if (code == 3) {
+		if (acao.equals("logar")) {
+			int conta;
+			int agencia;
+			int senha;
+			int code = -1;
+			try {
+				conta = Integer.parseInt(pConta);
+				agencia = Integer.parseInt(pAgencia);
+				senha = Integer.parseInt(pSenha);
+			} catch (NumberFormatException e) {
+				conta = agencia = senha = -1;
+				e.printStackTrace();
+			}
+
+			int vet[] = Dados.random();
+			request.setAttribute("vet", vet);
+			
+			ServletContext sc = getServletContext();
+			String path = sc.getRealPath("WEB-INF\\classes");	
+			new Dados(path);
+
+			Acesso acesso = new Acesso(conta, agencia, senha);
+			code = acesso.validar();
+			
+
+			if (code == 0) {
+				view = request.getRequestDispatcher("GerarCodigo.jsp");
+			} else if (code == 1) {
+				view = request.getRequestDispatcher("AcessarCodigo.jsp");
+			} else if (code == 2) {
+				view = request.getRequestDispatcher("Login.jsp");
+			} else if (code == 3) {
+				view = request.getRequestDispatcher("Login.jsp");
+			}
+		}
+		else if( acao.equals("sair")){
+			Conta.destroy();
 			view = request.getRequestDispatcher("Login.jsp");
 		}
 

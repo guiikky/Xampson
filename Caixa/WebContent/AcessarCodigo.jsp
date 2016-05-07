@@ -56,8 +56,8 @@
 				<hr></hr>
 				<div id="actions" class="row">
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" name="acao" value="Continuar2">Continuar</button>
-						<button type="button" class="btn btn-default" name="acao" value="Corrigir">Corrigir</button>
+						<button type="submit" class="btn btn-primary" name="acao" value="continuar2">Continuar</button>
+						<button type="button" class="btn btn-default" name="acao" value="corrigir2">Corrigir</button>
 					</div>
 				</div>
 			</div>

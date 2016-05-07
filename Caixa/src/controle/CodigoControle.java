@@ -36,13 +36,16 @@ public class CodigoControle extends HttpServlet {
 		String codigo = request.getParameter("codigo");
 		String acao = request.getParameter("acao");
 		int code = -1;
+		
+		int vet[] = Dados.random();
+		request.setAttribute("vet", vet);
 
 		RequestDispatcher view = null;
 
-		if (acao.equals("Continuar1")) {
+		if (acao.equals("continuar1")) {
 			Dados.gerarCodigo(codigo);
 			view = request.getRequestDispatcher("AcessarCodigo.jsp");
-		} else {
+		} else if (acao.equals("continuar2")) {
 			code = Dados.acessarCodigo(codigo);
 			if (code == 0) {
 				view = request.getRequestDispatcher("Menu.jsp");

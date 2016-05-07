@@ -33,6 +33,7 @@ public class AES {
 				}
 				crip[i] = x;
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return crip;
@@ -48,7 +49,8 @@ public class AES {
 			}
 			try {
 				normal[i] = decrypt(novo, "aaaaaaaaaaaaaaaa");
-			} catch (Exception erro) {
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return normal;

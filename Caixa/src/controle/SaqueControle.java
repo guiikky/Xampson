@@ -66,12 +66,18 @@ public class SaqueControle extends HttpServlet {
 				view = request.getRequestDispatcher("Sacar.jsp");
 			} else if (code == 2) {
 				view = request.getRequestDispatcher("Sacar.jsp");
-			} else {
+			} else if (code == 3) {
 				view = request.getRequestDispatcher("Sacar.jsp");
 			}
 		} else {
 			acao = request.getParameter("acao");
-			double valor = Double.parseDouble(acao);
+			double valor;
+			try {
+				valor = Double.parseDouble(acao);
+			} catch (NumberFormatException e) {
+				valor = -1;
+				e.printStackTrace();
+			}
 			Saque saque = new Saque(data, conta, new Dispenser(), valor);
 			code = saque.sacar();
 			to = saque.getTO();
@@ -81,7 +87,7 @@ public class SaqueControle extends HttpServlet {
 				view = request.getRequestDispatcher("Sacar.jsp");
 			} else if (code == 2) {
 				view = request.getRequestDispatcher("Sacar.jsp");
-			} else {
+			} else if (code == 3) {
 				view = request.getRequestDispatcher("Sacar.jsp");
 			}
 		}

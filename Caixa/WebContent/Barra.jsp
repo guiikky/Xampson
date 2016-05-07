@@ -19,7 +19,7 @@
 				<li><a href="Transferencia.jsp">Transferencia</a></li>
 				<li><a href="Saldo.jsp">Saldo</a></li>
 				<li><a href="DebitoAutomatico.jsp">Debito Automatico</a></li>
-				<li><a href="#">Sair</a></li>
+				<li><a href="AcessoControle?acao=sair">Sair</a></li>
 			</ul>
 		</div>
 	</div>

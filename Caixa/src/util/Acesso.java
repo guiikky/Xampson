@@ -42,7 +42,6 @@ public class Acesso {
 		String normal[] = Dados.acesso();
 		boolean status[] = status(normal);
 		int posicao = buscaBinaria(normal, obj);
-		// System.out.println(posicao);
 
 		if (posicao > -1) {
 			if (!status[posicao]) {

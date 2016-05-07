@@ -6,13 +6,14 @@ import java.io.FileReader;
 import java.util.Formatter;
 
 import idioma.Idioma;
+import util.Dados;
 
 public class Dispenser {
 	private int vet[];
 
 	// Metodo contrutor apartir da quantidade de notas no txt
 	public Dispenser() {
-		File arquivo = new File("C:\\users\\ikky\\my documents\\github\\caixa\\src\\negocio\\dispenser.txt");
+		File arquivo = new File(Dados.getPath() + "\\negocio\\dispenser.txt");
 		vet = new int[3];
 		int i = 0;
 		try (FileReader fr = new FileReader(arquivo); BufferedReader br = new BufferedReader(fr);) {
@@ -99,13 +100,13 @@ public class Dispenser {
 			System.out.println("R$" + y + ",00\n");
 			System.out.println("R$50,00   R$20,00   R$10,00");
 			System.out.println(n(c + "") + c + "x   " + n(b + "") + b + "x   " + n(a + "") + a + "x\n");
-			try (Formatter saida = new Formatter(
-					"C:\\users\\ikky\\my documents\\github\\caixa\\src\\negocio\\dispenser.txt");) {
+			try (Formatter saida = new Formatter(Dados.getPath() + "\\negocio\\dispenser.txt");) {
 				String quebraDeLinha = System.getProperty("line.separator");
 				for (int i = 0; i < vet.length; i++) {
 					saida.format(vet[i] + quebraDeLinha);
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			return true;
 		} else {

@@ -37,21 +37,18 @@ public class ExtratoControle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		String pDias = request.getParameter("conta");
+		// String pDias = request.getParameter("conta");
 		String acao = request.getParameter("acao");
 
 		Conta conta = Conta.getInstance();
-		ArrayList<ExtratoTO> lista;
+		ArrayList<ExtratoTO> lista = null;
 
 		if (acao.equals("7")) {
 			lista = Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", lista);
 		} else if (acao.equals("15")) {
-			lista =  Extrato.carregar(conta.getConta());
-			request.setAttribute("lista", lista);
-		} else {
-			lista =  Extrato.carregar(conta.getConta());
-			
+			lista = Extrato.carregar(conta.getConta());
+		} else if (acao.equals("*")) {
+			lista = Extrato.carregar(conta.getConta());
 		}
 		request.setAttribute("lista", lista);
 		RequestDispatcher view = request.getRequestDispatcher("Extrat.jsp");
