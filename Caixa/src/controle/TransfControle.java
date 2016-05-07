@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
 import negocio.Transferencia;
@@ -60,6 +61,7 @@ public class TransfControle extends HttpServlet {
 		}
 
 		RequestDispatcher view = null;
+		HttpSession session = request.getSession();
 
 		if (acao.equals("continuar")) {
 			if (Dados.verificar(pConta, pAgencia)) {
@@ -80,6 +82,7 @@ public class TransfControle extends HttpServlet {
 
 			Transferencia transf = new Transferencia(contap, contas, data, valor);
 			transf.transferir();
+			session.setAttribute("Transferencia", transf.getTO());
 
 			view = request.getRequestDispatcher("Menu.jsp");
 		} else if (acao.equals("cancelar")) {

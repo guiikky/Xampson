@@ -9,11 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
 import negocio.Dispenser;
 import negocio.Saque;
-import to.SaqueTO;
 
 /**
  * Servlet implementation class SaqueControle
@@ -46,8 +46,8 @@ public class SaqueControle extends HttpServlet {
 		int code = -1;
 
 		Conta conta = Conta.getInstance();
-		SaqueTO to = new SaqueTO();
 		RequestDispatcher view = null;
+		HttpSession session = request.getSession();
 
 		if (acao.equals("sacar")) {
 			double valor;
@@ -59,8 +59,9 @@ public class SaqueControle extends HttpServlet {
 			}
 			Saque saque = new Saque(data, conta, new Dispenser(), valor);
 			code = saque.sacar();
-			to = saque.getTO();
 			if (code == 0) {
+				request.setAttribute("saque", saque.getTO());
+				session.setAttribute("Saque", saque.getTO());
 				view = request.getRequestDispatcher("Saque.jsp");
 			} else if (code == 1) {
 				view = request.getRequestDispatcher("Sacar.jsp");
@@ -80,8 +81,9 @@ public class SaqueControle extends HttpServlet {
 			}
 			Saque saque = new Saque(data, conta, new Dispenser(), valor);
 			code = saque.sacar();
-			to = saque.getTO();
 			if (code == 0) {
+				request.setAttribute("saque", saque.getTO());
+				session.setAttribute("Saque", saque.getTO());
 				view = request.getRequestDispatcher("Saque.jsp");
 			} else if (code == 1) {
 				view = request.getRequestDispatcher("Sacar.jsp");
@@ -91,8 +93,6 @@ public class SaqueControle extends HttpServlet {
 				view = request.getRequestDispatcher("Sacar.jsp");
 			}
 		}
-
-		request.setAttribute("saque", to);
 		view.forward(request, response);
 	}
 

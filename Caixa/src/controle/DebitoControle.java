@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
 import negocio.DebitoAutomatico;
@@ -61,7 +62,10 @@ public class DebitoControle extends HttpServlet {
 		DebitoAutomatico debito = new DebitoAutomatico(operadora, consumidor, data, valor, conta);
 		debito.criar();
 		
+		
+		HttpSession session = request.getSession();
 		request.setAttribute("debito", debito.getTO());
+		session.setAttribute("DebitoAutomatico", debito.getTO());
 		RequestDispatcher view = request.getRequestDispatcher("Menu.jsp");
 		view.forward(request, response);
 		

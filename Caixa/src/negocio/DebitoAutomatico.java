@@ -4,11 +4,21 @@ import dao.DebitoAutomaticoDAO;
 import to.DebitoAutomaticoTO;
 
 public class DebitoAutomatico {
+	private int id;
 	private int operadora;
 	private int consumidor;
 	private String data;
 	private double valor;
 	private Conta conta;
+
+	public DebitoAutomatico(int id, int operadora, int consumidor, String data, double valor, Conta conta) {
+		this.id = id;
+		this.operadora = operadora;
+		this.consumidor = consumidor;
+		this.data = data;
+		this.valor = valor;
+		this.conta = conta;
+	}
 
 	public DebitoAutomatico(int operadora, int consumidor, String data, double valor, Conta conta) {
 		this.operadora = operadora;
@@ -16,6 +26,14 @@ public class DebitoAutomatico {
 		this.data = data;
 		this.valor = valor;
 		this.conta = conta;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getOperadora() {
@@ -65,8 +83,8 @@ public class DebitoAutomatico {
 		dao.incluir(to);
 		ex.incluir();
 	}
-	
-	public DebitoAutomaticoTO getTO(){
+
+	public DebitoAutomaticoTO getTO() {
 		DebitoAutomaticoTO to = new DebitoAutomaticoTO();
 		to.setOperadora(operadora);
 		to.setConsumidor(consumidor);
@@ -74,12 +92,6 @@ public class DebitoAutomatico {
 		to.setValor(valor);
 		to.setConta(conta);
 		return to;
-	}
-
-	@Override
-	public String toString() {
-		return "DebitoAutomaticoTO [operadora=" + operadora + ", consumidor=" + consumidor + ", data=" + data
-				+ ", conta=" + conta + "]";
 	}
 
 	@Override
@@ -103,12 +115,13 @@ public class DebitoAutomatico {
 				return false;
 		} else if (!data.equals(other.data))
 			return false;
+		if (id != other.id)
+			return false;
 		if (operadora != other.operadora)
 			return false;
 		if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
 			return false;
 		return true;
 	}
-	
-	
+
 }
