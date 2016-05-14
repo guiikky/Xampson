@@ -27,7 +27,7 @@
 	<div id="main" class="container">
 		<h3 class="page-header">Login</h3>
 		<!-- Formulario para logar -->
-		<form action="AcessoControle" method="post">
+		<form action="ServletControle" method="post">
 			<!-- area de campos do form -->
 			<div class="row">
 				<div class="form-group col-md-12">
@@ -50,7 +50,8 @@
 			<hr></hr>
 			<div id="actions" class="row">
 				<div class="form-group col-md-12">
-					<button type="submit" class="btn btn-primary" name="acao" value="logar">Logar</button>
+					<button type="submit" class="btn btn-primary" name="comando" value="AcessoLogar">Logar</button>
+					<button type="reset" class="btn btn-default">Corrigir</button>
 				</div>
 			</div>
 		</form>

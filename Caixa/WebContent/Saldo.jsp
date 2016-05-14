@@ -21,7 +21,6 @@
     <div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-		<form action="SaqueControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Saldo</h3>
@@ -33,7 +32,6 @@
 					</div>
 				</div>
 			</div>
-		</form>
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

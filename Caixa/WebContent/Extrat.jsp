@@ -27,7 +27,6 @@
 	</div>
 	
 	<div id="main" class="container-fluid">
-    	<form action="ExtratoControle" method="post"></form>
         <hr />
         <div id="list" class="row">
        		<div class="table-responsive col-md-12">
@@ -37,7 +36,6 @@
                         	<th>Data</th>
                             <th>Operacao</th>
                             <th>Valor</th>
-                            <!-- <th class="actions">Ações</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -52,9 +50,6 @@
                         	<td>
                         		${extrato.valor}
                         	</td>
-                        	<!--<td class="actions">-->
-                        		<!--<a class="btn btn-success btn-xs" href="ManterCliente.do?acao=Visualizar&id=${extrato.id}">Visualizar</a>-->
-                        	<!--</td>-->
                         </tr>
                     </c:forEach>
 					</tbody>

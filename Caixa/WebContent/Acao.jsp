@@ -34,7 +34,7 @@
 	</div>
 	
 	<div id="main" class="container-fluid">
-    	<form action="AcaoControle" method="post">
+    	<form action="ServletControle" method="post">
         <hr />
         <div id="list" class="row">
        		<div class="table-responsive col-md-12">
@@ -57,7 +57,7 @@
                 <hr></hr>
 				<div id="actions" class="row">
 					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn-primary" name="acao" value="OK">OK</button>
+						<button type="submit" class="btn btn-primary" name="comando" value="AcaoSair">OK</button>
 					</div>
 				</div>
             </div>

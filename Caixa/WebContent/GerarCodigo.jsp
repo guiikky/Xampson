@@ -28,7 +28,7 @@
 	<div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-			<form action="CodigoControle" method="post">
+			<form action="ServletControle" method="post">
 			<!-- area de campos do form -->
 				<div class="col-md-6">
 					<div class="page-header">
@@ -57,8 +57,8 @@
 			<hr></hr>
 			<div id="actions" class="row">
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-primary" name="acao" value="continuar1">Continuar</button>
-					<button type="button" class="btn btn-default" name="acao" value="corrigir1">Corrigir</button>
+					<button type="submit" class="btn btn-primary" name="comando" value="GerarCodigo">Continuar</button>
+					<button type="reset" class="btn btn-default">Corrigir</button>
 				</div>
 			</div>
 		</form>

@@ -21,7 +21,7 @@
 	<div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-		<form action="TransfControle" method="post">
+		<form action="ServletControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Transferencia</h3>
@@ -49,7 +49,7 @@
 				<hr></hr>
 				<div id="actions" class="row">
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" name="acao" value="continuar">Continuar</button>
+						<button type="submit" class="btn btn-primary" name="comando" value="CriarTransferencia">Continuar</button>
 					</div>
 				</div>
 			</div>

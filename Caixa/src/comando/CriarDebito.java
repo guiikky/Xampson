@@ -1,12 +1,10 @@
-package controle;
+package comando;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,29 +12,10 @@ import javax.servlet.http.HttpSession;
 import negocio.Conta;
 import negocio.DebitoAutomatico;
 
-/**
- * Servlet implementation class DebitoControle
- */
-@WebServlet("/DebitoControle")
-public class DebitoControle extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class CriarDebito implements Comando {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pOperadoara = request.getParameter("operadora");
 		String pConsumidor = request.getParameter("consumidor");
 		String pValor = request.getParameter("valor");
@@ -62,15 +41,11 @@ public class DebitoControle extends HttpServlet {
 		DebitoAutomatico debito = new DebitoAutomatico(operadora, consumidor, data, valor, conta);
 		debito.criar();
 		
-		
 		HttpSession session = request.getSession();
 		request.setAttribute("debito", debito.getTO());
 		session.setAttribute("DebitoAutomatico", debito.getTO());
 		RequestDispatcher view = request.getRequestDispatcher("Menu.jsp");
 		view.forward(request, response);
-		
-		
-		
 	}
 
 }

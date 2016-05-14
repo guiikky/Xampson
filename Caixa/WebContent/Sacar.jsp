@@ -21,7 +21,7 @@
     <div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-		<form action="SaqueControle" method="post">
+		<form action="ServletControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Saque</h3>
@@ -35,18 +35,18 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn btn-default" name="acao" value="10">R$10</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="20">R$20</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="50">R$50</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="100">R$100</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="200">R$200</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="500">R$500</button><br>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao10">R$10</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao20">R$20</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao50">R$50</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao100">R$100</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao200">R$200</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="SacarDinheiroBotao500">R$500</button><br>
 					</div>
 				</div>
 				<hr></hr>
 				<div id="actions" class="row">
 					<div class="col-md-12">
-						<button type="submit" class="btn btn btn-primary" name="acao" value="sacar">Sacar</button>
+						<button type="submit" class="btn btn btn-primary" name="comando" value="SacarDinheiroCampo">Sacar</button>
 					</div>
 				</div>
 			</div>

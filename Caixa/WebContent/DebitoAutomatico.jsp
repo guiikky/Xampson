@@ -21,7 +21,7 @@
 	<div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-		<form action="DebitoControle" method="post">
+		<form action="ServletControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Debito Automatico</h3>
@@ -49,7 +49,7 @@
 				<hr></hr>
 				<div id="actions" class="row">
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" name="acao" value="cadastrar">Cadastrar</button>
+						<button type="submit" class="btn btn-primary" name="comando" value="CriarDebito">Cadastrar</button>
 					</div>
 				</div>
 			</div>

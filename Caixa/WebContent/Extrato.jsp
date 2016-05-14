@@ -21,7 +21,7 @@
     <div id="main" class="container">
 		<h3 class="page-header">${conta:getInstance().cliente.nome}</h3>
 		<!-- Formulario para logar -->
-		<form action="ExtratoControle" method="post">
+		<form action="ServletControle" method="post">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>Extrato</h3>
@@ -35,9 +35,9 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn btn-default" name="acao" value="7">7 Dias</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="*">Tudo</button>
-						<button type="submit" class="btn btn btn-default" name="acao" value="15">15 Dias</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato7">7 Dias</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato">Tudo</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato15">15 Dias</button>
 					</div>
 				</div>
 			</div>
