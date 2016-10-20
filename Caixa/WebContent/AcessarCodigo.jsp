@@ -41,16 +41,16 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[0]}">${vet[0]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[1]}">${vet[1]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[2]}">${vet[2]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[3]}">${vet[3]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[4]}">${vet[4]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[5]}">${vet[5]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[6]}">${vet[6]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[7]}">${vet[7]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[8]}">${vet[8]}</button>
-						<button type="button" id="myBtn" class="btn btn btn-default" onclick="myFunction(this)" value="${vet[9]}">${vet[9]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[0]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[1]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[2]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[3]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[4]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[5]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[6]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[7]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[8]}</button>
+						<button type="button" id="myBtn" class="btn btn btn-default">${vet[9]}</button>
 					</div>
 				</div>
 				<hr></hr>
@@ -65,10 +65,4 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script>
-	function myFunction(button) {
-		var x = button.value;
-	    document.getElementById("codigo").innerHTML += x;
-	}
-	</script>
 </html>

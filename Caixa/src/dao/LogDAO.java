@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import to.LogTO;
 import util.ConnectionFactory;
 
 public class LogDAO {
-	public ArrayList<LogTO> carregar() {
+	public ArrayList<LogTO> carregar() throws IOException {
 		ArrayList<LogTO> lista = new ArrayList<LogTO>();
 		String sqlSelect = "SELECT * FROM log";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -28,6 +29,7 @@ public class LogDAO {
 			}
 		} catch (SQLException e) {
 			e.getStackTrace();
+			throw new IOException(e);
 		}
 		return lista;
 	}

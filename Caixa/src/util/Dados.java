@@ -10,14 +10,16 @@ import criptografia.AES;
 
 public class Dados {
 	private static String dados[];
+	private static String path;
 	private static int posicao;
 	private static int cont;
-	private static String path;
+	private static int acao;
 
-	public Dados(String dados[], int posicao, int cont) {
+	public Dados(String dados[], int posicao, int cont, int acao) {
 		Dados.dados = dados;
 		Dados.posicao = posicao;
 		Dados.cont = cont;
+		Dados.acao = acao;
 	}
 
 	public Dados(String path) {
@@ -30,6 +32,14 @@ public class Dados {
 
 	public static void setDados(String[] dados) {
 		Dados.dados = dados;
+	}
+
+	public static String getPath() {
+		return path;
+	}
+
+	public static void setPath(String path) {
+		Dados.path = path;
 	}
 
 	public static int getPosicao() {
@@ -48,12 +58,12 @@ public class Dados {
 		Dados.cont = cont;
 	}
 
-	public static String getPath() {
-		return path;
+	public static int getAcao() {
+		return acao++;
 	}
 
-	public static void setPath(String path) {
-		Dados.path = path;
+	public static void setAcao(int acao) {
+		Dados.acao = acao;
 	}
 
 	public static boolean verificar(String co, String ag) {

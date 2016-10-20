@@ -29,15 +29,7 @@
 				<!-- area de campos do form -->
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="dias">Dias</label>
-						<input type="number" class="form-control" name="dias" id="dias" maxlength="8" placeholder="5">
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-md-12">
-						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato7">7 Dias</button>
-						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato">Tudo</button>
-						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato15">15 Dias</button>
+						<button type="submit" class="btn btn btn-default" name="comando" value="ConsultarExtrato">Listar</button>
 					</div>
 				</div>
 			</div>

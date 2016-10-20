@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import dao.DebitoAutomaticoDAO;
 import to.DebitoAutomaticoTO;
 
@@ -76,7 +78,7 @@ public class DebitoAutomatico {
 		this.conta = conta;
 	}
 
-	public void criar() {
+	public void criar() throws IOException {
 		DebitoAutomaticoDAO dao = new DebitoAutomaticoDAO();
 		DebitoAutomaticoTO to = getTO();
 		Extrato ex = new Extrato(data, "DebitoAutomatico", valor, conta);

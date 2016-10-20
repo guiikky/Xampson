@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class ContaDAOTest {
 	}
 
 	@Test
-	public void test00Carregar() {
+	public void test00Carregar() throws IOException {
 		ContaTO fixture = new ContaTO();
 		fixture.setConta(2145987);
 		fixture.setAgencia(9999);
@@ -40,7 +42,7 @@ public class ContaDAOTest {
 	}
 
 	@Test
-	public void test01Inserir() {
+	public void test01Inserir() throws IOException {
 		dao.incluir(to);
 		id = to.getCliente().getId();
 		ContaTO novo = dao.carregar(to.getConta());
@@ -49,7 +51,7 @@ public class ContaDAOTest {
 	}
 
 	@Test
-	public void test02Atualizar() {
+	public void test02Atualizar() throws IOException {
 		to.getCliente().setId(id);
 		to.setAgencia(99);
 		to.setSaldo(1);
@@ -61,7 +63,7 @@ public class ContaDAOTest {
 	}
 
 	@Test
-	public void test03Excluir() {
+	public void test03Excluir() throws IOException {
 		to.setAgencia(0);
 		to.setSaldo(0);
 		to.getCliente().setId(id);

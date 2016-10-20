@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import to.TransferenciaTO;
 
 public class Transferencia {
@@ -56,7 +58,7 @@ public class Transferencia {
 		return to;
 	}
 
-	public void transferir() {
+	public void transferir() throws IOException {
 		if (cop.conferirSaldo(valor)) {
 			Extrato ex = new Extrato(data, "Transferencia", valor, cop);
 			cop.setSaldo(cop.getSaldo() - valor);

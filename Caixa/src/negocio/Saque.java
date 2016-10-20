@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import to.SaqueTO;
 
 public class Saque {
@@ -12,6 +14,13 @@ public class Saque {
 		this.data = data;
 		this.conta = conta;
 		this.dispenser = dispenser;
+		this.valor = valor;
+	}
+	
+	public Saque(String data, Conta conta, double valor) {
+		this.data = data;
+		this.conta = conta;
+		this.dispenser = new Dispenser();
 		this.valor = valor;
 	}
 
@@ -46,8 +55,8 @@ public class Saque {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
-	public SaqueTO getTO(){
+
+	public SaqueTO getTO() {
 		SaqueTO to = new SaqueTO();
 		to.setData(data);
 		to.setConta(conta);
@@ -56,7 +65,7 @@ public class Saque {
 		return to;
 	}
 
-	public int sacar() {
+	public int sacar() throws IOException {
 		if (conta.conferirSaldo(valor)) {
 			if ((int) valor % 10 == 0) {
 				if (dispenser.contar((int) valor)) {

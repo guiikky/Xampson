@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
-import negocio.Dispenser;
 import negocio.Saque;
+import util.Dados;
 
 public class SacarDinheiroCampo implements Comando {
 
@@ -33,11 +33,11 @@ public class SacarDinheiroCampo implements Comando {
 			valor = -1;
 			e.printStackTrace();
 		}
-		Saque saque = new Saque(data, conta, new Dispenser(), valor);
+		Saque saque = new Saque(data, conta, valor);
 		int code = saque.sacar();
 		if (code == 0) {
 			request.setAttribute("saque", saque.getTO());
-			session.setAttribute("Saque", saque.getTO());
+			session.setAttribute(Dados.getAcao() + "-Saque", saque.getTO());
 			view = request.getRequestDispatcher("Saque.jsp");
 		} else if (code == 1) {
 			view = request.getRequestDispatcher("Sacar.jsp");

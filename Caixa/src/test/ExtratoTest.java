@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,7 +24,7 @@ public class ExtratoTest {
 	}
 
 	@Test
-	public void test00Carregar() {
+	public void test00Carregar() throws IOException {
 		Extrato fixture = new Extrato(1, "20/3/2016", "Saque", 50.0, new Conta(2398468, 9999, 0, null));
 		Extrato novo = new Extrato(1, null, null, 0, null);
 		novo.carregar();
@@ -31,7 +33,7 @@ public class ExtratoTest {
 	}
 
 	@Test
-	public void test01Criar() {
+	public void test01Criar() throws IOException {
 		extrato.incluir();
 		id = extrato.getId();
 		copia.setId(id);
@@ -39,7 +41,7 @@ public class ExtratoTest {
 	}
 
 	@Test
-	public void test02Atualizar() {
+	public void test02Atualizar() throws IOException {
 		extrato.setValor(100.00);
 		copia.setValor(100.00);
 		extrato.atualizar();
@@ -47,7 +49,7 @@ public class ExtratoTest {
 	}
 
 	@Test
-	public void test03Excluir() {
+	public void test03Excluir() throws IOException {
 		extrato.setId(id);
 		extrato.setData(null);
 		extrato.setOperacao(null);

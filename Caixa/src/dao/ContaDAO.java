@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import util.ConnectionFactory;
 
 public class ContaDAO {
 
-	public void incluir(ContaTO to) {
+	public void incluir(ContaTO to) throws IOException {
 		ClienteTO to2 = new ClienteTO();
 		ClienteDAO dao = new ClienteDAO();
 		to2.setNome(to.getCliente().getNome());
@@ -30,10 +31,11 @@ public class ContaDAO {
 			stm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public void atualizar(ContaTO to) {
+	public void atualizar(ContaTO to) throws IOException {
 		String sqlUpdate = "UPDATE conta SET agencia=?, saldo=? WHERE conta=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -44,10 +46,11 @@ public class ContaDAO {
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public void excluir(ContaTO to) {
+	public void excluir(ContaTO to) throws IOException {
 		ClienteTO to2 = new ClienteTO();
 		ClienteDAO dao = new ClienteDAO();
 		String sqlDelete = "DELETE FROM conta WHERE conta = ?";
@@ -58,12 +61,13 @@ public class ContaDAO {
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 		to2.setId(to.getCliente().getId());
 		dao.excluir(to2);
 	}
 
-	public ContaTO carregar(int id) {
+	public ContaTO carregar(int id) throws IOException {
 		ContaTO to = new ContaTO();
 		String sqlSelect = "SELECT agencia, saldo, idCliente FROM conta WHERE conta = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -81,9 +85,11 @@ public class ContaDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new IOException(e);
 			}
 		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
+			e1.getStackTrace();
+			throw new IOException(e1);
 		}
 		return to;
 	}

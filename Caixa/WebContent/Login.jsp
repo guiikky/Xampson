@@ -50,7 +50,7 @@
 			<hr></hr>
 			<div id="actions" class="row">
 				<div class="form-group col-md-12">
-					<button type="submit" class="btn btn-primary" name="comando" value="AcessoLogar">Logar</button>
+					<button type="submit" class="btn btn-primary" name="comando" value="Login">Logar</button>
 					<button type="reset" class="btn btn-default">Corrigir</button>
 				</div>
 			</div>

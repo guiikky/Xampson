@@ -1,5 +1,6 @@
 package negocio;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import dao.ExtratoDAO;
@@ -67,7 +68,7 @@ public class Extrato {
 		this.conta = conta;
 	}
 
-	public void incluir() {
+	public void incluir() throws IOException {
 		ExtratoDAO dao = new ExtratoDAO();
 		ExtratoTO to = new ExtratoTO();
 		to.setData(data);
@@ -78,7 +79,7 @@ public class Extrato {
 		id = to.getId();
 	}
 
-	public void atualizar() {
+	public void atualizar() throws IOException {
 		ExtratoDAO dao = new ExtratoDAO();
 		ExtratoTO to = new ExtratoTO();
 		to.setId(id);
@@ -89,24 +90,24 @@ public class Extrato {
 		dao.atualizar(to);
 	}
 
-	public void excluir() {
+	public void excluir() throws IOException {
 		ExtratoDAO dao = new ExtratoDAO();
 		ExtratoTO to = new ExtratoTO();
 		to.setId(id);
 		dao.excluir(to);
 	}
-	
-	public void carregar(){
+
+	public void carregar() throws IOException {
 		ExtratoDAO dao = new ExtratoDAO();
 		ExtratoTO to = dao.carregar(id);
 		data = to.getData();
 		operacao = to.getOperacao();
 		valor = to.getValor();
 		conta = to.getConta();
-		
+
 	}
 
-	public static ArrayList<ExtratoTO> carregar(int id) {
+	public static ArrayList<ExtratoTO> carregar(int id) throws IOException {
 		ExtratoDAO dao = new ExtratoDAO();
 		ArrayList<ExtratoTO> lista = dao.carregarTudo(id);
 		return lista;

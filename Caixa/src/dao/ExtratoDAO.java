@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import util.ConnectionFactory;
 
 public class ExtratoDAO {
 
-	public void incluir(ExtratoTO to) {
+	public void incluir(ExtratoTO to) throws IOException {
 		String sqlInsert = "INSERT INTO log(conta, agencia, operacao, valor, data) VALUES (?, ?, ?, ?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -31,10 +32,11 @@ public class ExtratoDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public void atualizar(ExtratoTO to) {
+	public void atualizar(ExtratoTO to) throws IOException {
 		String sqlUpdate = "UPDATE log SET conta = ?, agencia = ?, operacao = ?, valor = ?, data = ? WHERE id=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -48,10 +50,11 @@ public class ExtratoDAO {
 			stm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public void excluir(ExtratoTO to) {
+	public void excluir(ExtratoTO to) throws IOException {
 		String sqlDelete = "DELETE FROM log WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -60,10 +63,11 @@ public class ExtratoDAO {
 			stm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public ExtratoTO carregar(int id) {
+	public ExtratoTO carregar(int id) throws IOException {
 		ExtratoTO to = new ExtratoTO();
 		Conta aux = new Conta(0, 0, 0, null);
 		String sqlSelect = "SELECT conta, agencia, valor, data, operacao FROM log WHERE id = ?";
@@ -82,14 +86,16 @@ public class ExtratoDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new IOException(e);
 			}
 		} catch (SQLException e1) {
 			e1.getStackTrace();
+			throw new IOException(e1);
 		}
 		return to;
 	}
 
-	public ArrayList<ExtratoTO> carregarTudo(int id) {
+	public ArrayList<ExtratoTO> carregarTudo(int id) throws IOException {
 		ArrayList<ExtratoTO> lista = new ArrayList<ExtratoTO>();
 		String sqlSelect = "SELECT valor, data, operacao FROM log WHERE conta = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -106,9 +112,11 @@ public class ExtratoDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new IOException(e);
 			}
 		} catch (SQLException e1) {
 			e1.getStackTrace();
+			throw new IOException(e1);
 		}
 		return lista;
 	}

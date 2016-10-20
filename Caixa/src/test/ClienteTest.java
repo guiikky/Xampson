@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -21,7 +23,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void test00Carregar() {
+	public void test00Carregar() throws IOException {
 		Cliente fixture = new Cliente(1, "Han Solo", 1);
 		Cliente novo = new Cliente(1, null, 0);
 		novo.carregar();
@@ -29,7 +31,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void test01Criar() {
+	public void test01Criar() throws IOException {
 		cliente.criar();
 		copia.setId(cliente.getId());
 		id = cliente.getId();
@@ -37,7 +39,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void test02Atualizar() {
+	public void test02Atualizar() throws IOException {
 		cliente.setId(id);
 		cliente.setTipo(1);
 		copia.setId(id);
@@ -47,7 +49,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void test03Excluir() {
+	public void test03Excluir() throws IOException {
 		cliente.setId(id);
 		cliente.setNome(null);
 		cliente.setTipo(0);

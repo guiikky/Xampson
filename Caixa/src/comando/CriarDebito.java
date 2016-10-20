@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
 import negocio.DebitoAutomatico;
+import util.Dados;
 
 public class CriarDebito implements Comando {
 
@@ -20,10 +21,10 @@ public class CriarDebito implements Comando {
 		String pConsumidor = request.getParameter("consumidor");
 		String pValor = request.getParameter("valor");
 		String data;
-		
+
 		Calendar cldr = Calendar.getInstance();
 		data = cldr.get(Calendar.DAY_OF_MONTH) + "/" + (cldr.get(Calendar.MONTH) + 1) + "/" + cldr.get(Calendar.YEAR);
-		
+
 		int operadora;
 		int consumidor;
 		double valor;
@@ -36,14 +37,14 @@ public class CriarDebito implements Comando {
 			valor = -1;
 			e.printStackTrace();
 		}
-		
+
 		Conta conta = Conta.getInstance();
 		DebitoAutomatico debito = new DebitoAutomatico(operadora, consumidor, data, valor, conta);
 		debito.criar();
-		
+
 		HttpSession session = request.getSession();
 		request.setAttribute("debito", debito.getTO());
-		session.setAttribute("DebitoAutomatico", debito.getTO());
+		session.setAttribute(Dados.getAcao() + "-DebitoAutomatico", debito.getTO());
 		RequestDispatcher view = request.getRequestDispatcher("Menu.jsp");
 		view.forward(request, response);
 	}

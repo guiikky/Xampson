@@ -1,5 +1,7 @@
 package util;
 
+import java.io.IOException;
+
 import negocio.Conta;
 
 public class Acesso {
@@ -37,7 +39,7 @@ public class Acesso {
 		this.senha = senha;
 	}
 
-	public int validar() {
+	public int validar() throws IOException {
 		String obj = conta + "/" + senha + "/" + agencia;
 		String normal[] = Dados.acesso();
 		boolean status[] = status(normal);
@@ -45,7 +47,7 @@ public class Acesso {
 
 		if (posicao > -1) {
 			if (!status[posicao]) {
-				new Dados(normal, posicao, 0);
+				new Dados(normal, posicao, 0, 1);
 				Conta.newConta(conta, agencia);
 
 				// Senha nao cadastrada
@@ -67,7 +69,7 @@ public class Acesso {
 	}
 
 	// Metodo busca binaria (Requisito)
-	public int buscaBinaria(String vet[], String proc) {
+	private int buscaBinaria(String vet[], String proc) {
 		int inicio = 0, fim = vet.length - 1;
 
 		while (inicio <= fim) {
@@ -84,7 +86,7 @@ public class Acesso {
 	}
 
 	// Metodo auxiliar das flags das contas
-	public boolean[] status(String normal[]) {
+	private boolean[] status(String normal[]) {
 		boolean resp[] = new boolean[normal.length];
 		for (int i = 0; i < normal.length; i++) {
 			if (normal[i].substring(22).equals("false")) {

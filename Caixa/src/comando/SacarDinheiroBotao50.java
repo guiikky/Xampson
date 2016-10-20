@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
-import negocio.Dispenser;
 import negocio.Saque;
+import util.Dados;
 
 public class SacarDinheiroBotao50 implements Comando {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String data;
 		Calendar cldr = Calendar.getInstance();
 		data = cldr.get(Calendar.DAY_OF_MONTH) + "/" + (cldr.get(Calendar.MONTH) + 1) + "/" + cldr.get(Calendar.YEAR);
@@ -26,11 +26,11 @@ public class SacarDinheiroBotao50 implements Comando {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 
-		Saque saque = new Saque(data, conta, new Dispenser(), 50.0);
+		Saque saque = new Saque(data, conta, 50.0);
 		int code = saque.sacar();
 		if (code == 0) {
 			request.setAttribute("saque", saque.getTO());
-			session.setAttribute("Saque", saque.getTO());
+			session.setAttribute(Dados.getAcao() + "-Saque", saque.getTO());
 			view = request.getRequestDispatcher("Saque.jsp");
 		} else if (code == 1) {
 			view = request.getRequestDispatcher("Sacar.jsp");

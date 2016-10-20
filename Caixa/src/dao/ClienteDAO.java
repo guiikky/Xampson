@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import util.ConnectionFactory;
 
 public class ClienteDAO {
 
-	public void incluir(ClienteTO to) {
+	public void incluir(ClienteTO to) throws IOException {
 		String sqlInsert = "INSERT INTO cliente(nome, tipo) VALUES (?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -27,11 +28,11 @@ public class ClienteDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
-		
 
-	public void atualizar(ClienteTO to) {
+	public void atualizar(ClienteTO to) throws IOException {
 		String sqlUpdate = "UPDATE cliente SET nome=?, tipo=? WHERE id=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -42,10 +43,11 @@ public class ClienteDAO {
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public void excluir(ClienteTO to) {
+	public void excluir(ClienteTO to) throws IOException {
 		String sqlDelete = "DELETE FROM cliente WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -54,10 +56,11 @@ public class ClienteDAO {
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 
-	public ClienteTO carregar(int id) {
+	public ClienteTO carregar(int id) throws IOException {
 		ClienteTO to = new ClienteTO();
 		String sqlSelect = "SELECT nome, tipo FROM cliente WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -71,9 +74,11 @@ public class ClienteDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new IOException(e);
 			}
 		} catch (SQLException e1) {
 			e1.getStackTrace();
+			throw new IOException(e1);
 		}
 		return to;
 	}

@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import util.ConnectionFactory;
 
 public class DebitoAutomaticoDAO {
 
-	public void incluir(DebitoAutomaticoTO to) {
+	public void incluir(DebitoAutomaticoTO to) throws IOException {
 		String sqlInsert = "INSERT INTO debitoAutomatico (operadora, consumidor, data, valor, conta) VALUES (?, ?, ?, ?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -22,6 +23,7 @@ public class DebitoAutomaticoDAO {
 			stm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new IOException(e);
 		}
 	}
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import negocio.Conta;
 import negocio.Transferencia;
+import util.Dados;
 
 public class ConfirmarTransferencia implements Comando {
 
@@ -45,7 +46,7 @@ public class ConfirmarTransferencia implements Comando {
 		transf.transferir();
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("Transferencia", transf.getTO());
+		session.setAttribute(Dados.getAcao() + "-Transferencia", transf.getTO());
 
 		RequestDispatcher view = request.getRequestDispatcher("Menu.jsp");
 		view.forward(request, response);

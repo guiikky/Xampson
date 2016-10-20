@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import negocio.Conta;
 import to.AcaoTO;
 
-public class AcessoSair implements Comando {
+public class Logout implements Comando {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class AcessoSair implements Comando {
 
 		if (list.hasMoreElements()) {
 			ArrayList<AcaoTO> lista = getArray(list);
-			session.setAttribute("lista", lista);
+			request.setAttribute("lista", lista);
 			view = request.getRequestDispatcher("Acao.jsp");
 		} else {
 			Conta.destroy();
@@ -37,7 +37,10 @@ public class AcessoSair implements Comando {
 		ArrayList<AcaoTO> lista = new ArrayList<AcaoTO>();
 		while (list.hasMoreElements()) {
 			AcaoTO to = new AcaoTO();
-			to.setOperacao(list.nextElement());
+			String aux = list.nextElement();
+			if (!aux.equals("logado")) {
+				to.setOperacao(aux);
+			}
 			lista.add(to);
 		}
 		return lista;

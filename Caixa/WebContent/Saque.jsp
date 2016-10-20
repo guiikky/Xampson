@@ -32,12 +32,12 @@
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label for="agencia">Valor: ${saque.valor}</label>
+					<label for="agencia">Valor: R$${saque.valor}</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label for="senha">Saldo: ${saque.conta.saldo}</label>
+					<label for="senha">Saldo: R$${saque.conta.saldo}</label>
 				</div>
 			</div>
 		</div>

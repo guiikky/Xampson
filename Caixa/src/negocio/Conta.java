@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import dao.ContaDAO;
 import to.ContaTO;
 
@@ -49,7 +51,7 @@ public class Conta {
 		this.cliente = cliente;
 	}
 
-	public static void newConta(int conta, int agencia) {
+	public static void newConta(int conta, int agencia) throws IOException {
 		if (instance == null) {
 			Conta aux = new Conta(conta, agencia, 0, null);
 			aux.carregar();
@@ -78,20 +80,20 @@ public class Conta {
 		return to;
 	}
 
-	public void criar() {
+	public void criar() throws IOException {
 		ContaDAO dao = new ContaDAO();
 		ContaTO to = getTO();
 		dao.incluir(to);
 		cliente.setId(to.getCliente().getId());
 	}
 
-	public void atualizar() {
+	public void atualizar() throws IOException {
 		ContaDAO dao = new ContaDAO();
 		ContaTO to = getTO();
 		dao.atualizar(to);
 	}
 
-	public void excluir() {
+	public void excluir() throws IOException {
 		ContaDAO dao = new ContaDAO();
 		ContaTO to = new ContaTO();
 		to.setConta(conta);
@@ -99,7 +101,7 @@ public class Conta {
 		dao.excluir(to);
 	}
 
-	public void carregar() {
+	public void carregar() throws IOException {
 		ContaDAO dao = new ContaDAO();
 		ContaTO to = dao.carregar(conta);
 		agencia = to.getAgencia();

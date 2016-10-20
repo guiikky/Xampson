@@ -44,7 +44,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label for="valor">Valor: ${transf.valor}</label>
+						<label for="valor">Valor: R$${transf.valor}</label>
 					</div>
 				</div>
 				<hr></hr>

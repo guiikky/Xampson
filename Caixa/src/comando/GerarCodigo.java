@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import util.Dados;
 
@@ -17,7 +18,9 @@ public class GerarCodigo implements Comando {
 
 		int vet[] = Dados.random();
 		request.setAttribute("vet", vet);
-
+		HttpSession session = request.getSession();
+		request.setAttribute("logado", session.getAttribute("logado"));
+		
 		Dados.gerarCodigo(codigo);
 		RequestDispatcher view = request.getRequestDispatcher("AcessarCodigo.jsp");
 		view.forward(request, response);

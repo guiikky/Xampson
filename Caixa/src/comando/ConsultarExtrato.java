@@ -16,8 +16,6 @@ public class ConsultarExtrato implements Comando {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// String pDias = request.getParameter("conta");
-
 		Conta conta = Conta.getInstance();
 		ArrayList<ExtratoTO> lista = Extrato.carregar(conta.getConta());
 

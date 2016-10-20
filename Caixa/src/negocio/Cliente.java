@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import dao.ClienteDAO;
 import to.ClienteTO;
 
@@ -43,7 +45,7 @@ public class Cliente {
 		this.tipo = tipo;
 	}
 
-	public void criar() {
+	public void criar() throws IOException {
 		ClienteDAO dao = new ClienteDAO();
 		ClienteTO to = new ClienteTO();
 		to.setNome(nome);
@@ -52,7 +54,7 @@ public class Cliente {
 		id = to.getId();
 	}
 
-	public void atualizar() {
+	public void atualizar() throws IOException {
 		ClienteDAO dao = new ClienteDAO();
 		ClienteTO to = new ClienteTO();
 		to.setId(id);
@@ -61,14 +63,14 @@ public class Cliente {
 		dao.atualizar(to);
 	}
 
-	public void excluir() {
+	public void excluir() throws IOException {
 		ClienteDAO dao = new ClienteDAO();
 		ClienteTO to = new ClienteTO();
 		to.setId(id);
 		dao.excluir(to);
 	}
 
-	public void carregar() {
+	public void carregar() throws IOException {
 		ClienteDAO dao = new ClienteDAO();
 		ClienteTO to = dao.carregar(id);
 		nome = to.getNome();
