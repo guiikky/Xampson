@@ -24,7 +24,7 @@ public class JSon {
 		BufferedReader reader = request.getReader();
 		try {
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine())  != null) {
 				sb.append(line).append('\n');
 			}
 		} finally {
