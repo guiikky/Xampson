@@ -26,6 +26,14 @@ public class ServiceLogin extends HttpServlet {
 		super.service(request, response);
 	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		new Dados(getServletContext().getRealPath("WEB-INF\\classes"));
+		PrintWriter out = response.getWriter();
+		String[] contas = Dados.acesso();
+		out.println(JSon.acessoListToJSon(contas));
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

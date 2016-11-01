@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import negocio.Conta;
 import util.JSon;
 
-@WebServlet("/saldo1")
-public class ServiceSaldo extends HttpServlet {
+@WebServlet("/conta1")
+public class ServiceConta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

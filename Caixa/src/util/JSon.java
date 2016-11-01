@@ -32,8 +32,29 @@ public class JSon {
 		}
 		return sb;
 	}
+	
+	public static String acessoListToJSon(String[] contas) {
+		JSONArray vetor = new JSONArray();
+		for (int i = 0; i < contas.length; i++) {
+			JSONObject object = new JSONObject();
+			int conta = Integer.parseInt(contas[i].substring(0, 7));
+			int agencia = Integer.parseInt(contas[i].substring(13, 17));
+			int senha = Integer.parseInt(contas[i].substring(8, 12));
+			Acesso acesso = new Acesso(conta, agencia, senha);
+			try {
+				object.put("conta", acesso.getConta());
+				object.put("agencia", acesso.getAgencia());
+				object.put("senha", acesso.getSenha());
+				vetor.put(object);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		return vetor.toString();
+	}
 
-	public static String listToJSon(ArrayList<ExtratoTO> lista) {
+
+	public static String extratoListToJSon(ArrayList<ExtratoTO> lista) {
 		JSONArray vetor = new JSONArray();
 		for (ExtratoTO to : lista) {
 			JSONObject object = new JSONObject();
@@ -71,7 +92,7 @@ public class JSon {
 			object.put("conta", conta.getConta());
 			object.put("agencia", conta.getAgencia());
 			object.put("saldo", conta.getSaldo());
-			object.put("cliente", conta.getCliente());
+			object.put("cliente", conta.getCliente().getNome());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

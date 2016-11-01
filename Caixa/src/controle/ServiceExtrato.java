@@ -37,7 +37,7 @@ public class ServiceExtrato extends HttpServlet {
 		try {
 			int idConta = Integer.parseInt(conta);
 			lista = Extrato.carregar(idConta);
-			out.println(JSon.listToJSon(lista));
+			out.println(JSon.extratoListToJSon(lista));
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.println(JSon.errorToJSon(e));
